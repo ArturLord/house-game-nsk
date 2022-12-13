@@ -1,11 +1,24 @@
 import React from "react";
 import './Card.scss';
 
-const Card = ({title, price, imageUrl}) => { 
+const Card = ({title, price, imageUrl, onClickPlus, onClickFavourite}) => { 
+    const [isAdded, setIsAdded] = React.useState(false);
+    const [isFavourite, setIsFavourite] = React.useState(false);
+
+
+    const HandlePlus = () => {
+        onClickPlus({title, price, imageUrl});
+        setIsAdded(!isAdded);
+    };
+
+    const onFavourite = () => {
+        setIsFavourite(!isFavourite);
+    }
+    
     return (
         <div className="card">
-            <div className="card-favourite">
-                <img src="/img/unliked.svg" alt="unliked"/>
+            <div className="card-favourite" onClick={onFavourite}>
+                <img src={isFavourite ? "/img/liked.svg" : "/img/unliked.svg"} alt="unliked"/>
             </div>
                 <img className="card-sneakers" src={imageUrl} alt='sneakers'/>
                 <h5>{title}</h5>
@@ -14,9 +27,8 @@ const Card = ({title, price, imageUrl}) => {
                     <span>Цена:</span>
                     <b>{price}</b>
                 </div>
-                    <button className="card-button">
-                    <img className="card-plus" src='/img/plus.svg' alt='plus'/>
-                    </button>
+                    <img className="card-plus" onClick={HandlePlus} 
+                    src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"} alt='plus'/>
             </div>
         </div>
     )

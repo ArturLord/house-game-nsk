@@ -33,6 +33,7 @@ body {
 
   .sneakers{
     display: flex;
+    flex-wrap: wrap;
   }
     
 
@@ -45,10 +46,19 @@ body {
   }
 
   .search-block {
+    position: relative;
     display: flex;
     border: 1px solid #f3f3f3;
     border-radius: 10px;
     padding: 0 15px;
+  }
+
+  .basket-clear {
+    position: absolute;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
   }
 
   input {

@@ -1,7 +1,7 @@
 import React from "react";
 import './Header.scss';
 
-const Header = () => {
+const Header = ({onClickBasket}) => {
     return (
         <header>
         <div className="headerLeft">
@@ -12,7 +12,7 @@ const Header = () => {
           </div>
         </div>
         <ul className="headerRight">
-          <li>
+          <li onClick={onClickBasket}>
           <img src='/img/cart.svg' alt="cart"/>
             <span>1200 руб</span>
           </li>
