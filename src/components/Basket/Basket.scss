@@ -5,7 +5,22 @@
     left: 0;
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
     z-index: 1;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .overlayVisible {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+
+
+    .basket-block {
+      transform: translateX(0);
+    }
   }
   .basket-block {
     display: flex;
@@ -14,9 +29,12 @@
     width: 420px;
     height: 100%;
     padding: 30px;
+    z-index: 2;
     right: 0;
     background: #fff;
     box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
     }
     h2 {
       display: flex;
@@ -78,7 +96,6 @@
 
     .img-box {
       width: 120px;
-      height: 120px;
     }
 
     p {
@@ -87,6 +104,7 @@
     }
 
     .greenButton {
+      position: relative;
       width: 245px;
       margin-top: 20px;
       height: 55px;
@@ -105,10 +123,14 @@
       &:active {
         background: darken(#9dd558, 5%);
       }
+      &:disabled {
+        animation: button-loading 0.8s ease-in-out infinite;
+      }
 
       &:hover {
         img {
           transform: rotate(180deg) translate(3px);
+          cursor: default;
         }
       }
 
@@ -166,11 +188,28 @@
     cursor: pointer;
     transition: background 0.1s ease-in-out;
 
+    &:disabled {
+      background-color : #bebebe !important;
+      cursor: default;
+    }
+
     &:hover {
       background: lighten(#9dd558, 5%);
     }
     &:active {
       background: darken(#9dd558, 5%);
     }
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity:  0.8;
+  }
+  100% {
+    opacity: 1;
   }
 }
