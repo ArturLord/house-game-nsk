@@ -1,5 +1,5 @@
 * {
-  font-family: 'Inter', system-ui;
+  font-family: "Inter", system-ui;
   box-sizing: border-box;
   outline: none;
   text-decoration: none;
@@ -27,24 +27,25 @@ body {
   border-radius: 20px;
   max-width: 1080px;
   margin: 0 auto;
-
 }
 
 .content {
   padding: 40px;
 
-  .sneakers{
+  .gameconsole {
     display: flex;
     flex-wrap: wrap;
   }
-    
-
 
   .content-block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
+
+    h1 {
+      font-size: 25px;
+    }
   }
 
   .search-block {
