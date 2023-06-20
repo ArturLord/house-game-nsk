@@ -97,9 +97,12 @@ body {
 
 @media screen and (max-width: 580px) {
   .wrapper {
-    max-width: 330px;
+    max-width: 320px;
   }
-  
+  .content {
+    // width: 400px;
+    padding: 10px;
+  }
   .content-block {
     flex-direction: column;
   }
