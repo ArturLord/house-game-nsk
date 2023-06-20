@@ -81,10 +81,25 @@ body {
   }
 }
 
+@media screen and (max-width: 1080px) {
+  .wrapper {
+    max-width: 630px;
+  }
+  .gameconsole-fav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .content-block {
+    flex-direction: column;
+  }
+ }
+
 @media screen and (max-width: 580px) {
   .wrapper {
     max-width: 330px;
   }
+  
   .content-block {
     flex-direction: column;
   }

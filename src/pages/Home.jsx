@@ -17,6 +17,7 @@ function Home({
       item.name.toLowerCase().includes(searchValue.toLowerCase())
       
     );
+    console.log(filterCards)
     return (isLoading ? [...Array(8)] : filterCards).map((item, i) => (
       <Card
         key={i}

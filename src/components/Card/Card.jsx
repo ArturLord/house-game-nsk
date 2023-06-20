@@ -17,8 +17,8 @@ const Card = ({
   added,
   loading = false,
 }) => {
-  const { isCardsAdded } = React.useContext(AppContext);
-  const [isFavourite, setIsFavourite] = React.useState(favourite);
+  const { isCardsAdded, isFavouriteAdded } = React.useContext(AppContext);
+  const [isFavourite, setIsFavourite] = React.useState(added);
   const cardsObj = { name, price, imageUrl, count, parentId: id, id };
 
   const handlePlus = () => {
@@ -29,6 +29,7 @@ const Card = ({
     onClickFavourite(cardsObj);
     setIsFavourite(!isFavourite);
   };
+
 
   return (
     <div className="card">
