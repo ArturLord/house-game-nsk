@@ -10,12 +10,13 @@ function Home({
   onChangeSearchInput,
   onSearchValue,
   isLoading,
+  isFavouriteAdded,
 }) {
   const renderCards = () => {
     const filterCards = cards.filter((item) =>
       item.name.toLowerCase().includes(searchValue.toLowerCase())
+      
     );
-    
     return (isLoading ? [...Array(8)] : filterCards).map((item, i) => (
       <Card
         key={i}
@@ -23,6 +24,7 @@ function Home({
         onClickFavourite={(obj) => onAddToFavourite(obj)}
         loading={isLoading}
         {...item}
+        added={isFavouriteAdded(item && item.id)}
       />
     ));
   };

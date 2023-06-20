@@ -101,6 +101,10 @@ function App() {
     return basketCards.some((obj) => +obj.parentId === +id);
   };
 
+  const isFavouriteAdded = (id) => {
+    return favourites.some((obj) => +obj.parentId === +id);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -138,6 +142,7 @@ function App() {
                 onAddToFavourite={onAddToFavourite}
                 onAddToBasket={onAddToBasket}
                 isLoading={isLoading}
+                isFavouriteAdded={isFavouriteAdded}
               />
             }
           />

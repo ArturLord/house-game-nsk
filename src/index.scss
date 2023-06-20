@@ -27,16 +27,25 @@ body {
   border-radius: 20px;
   max-width: 1080px;
   margin: 0 auto;
+  
 }
 
 .content {
+  max-width: 1090px;
   padding: 40px;
 
   .gameconsole {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
+  .gameconsole-fav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  
   .content-block {
     display: flex;
     justify-content: space-between;
@@ -71,3 +80,12 @@ body {
     padding: 13px;
   }
 }
+
+@media screen and (max-width: 580px) {
+  .wrapper {
+    max-width: 330px;
+  }
+  .content-block {
+    flex-direction: column;
+  }
+ }

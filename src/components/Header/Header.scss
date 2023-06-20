@@ -1,4 +1,4 @@
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,4 +34,21 @@ header {
       cursor: pointer;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 20px;
+
+    .headerLeft {
+      margin-bottom: 5px;
+    }
+
+    .headerRight {
+      margin-top: 20px;
+    }
+  }
 }
+
+
+
+

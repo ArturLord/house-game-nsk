@@ -10,11 +10,12 @@ function Favourites({ onAddToFavourite }) {
       <div className="content-block">
         <h1>Мои Закладки</h1>
       </div>
-      <div className="gameconsole">
+      <div className="gameconsole-fav">
         {favourites.map((item, i) => (
           <Card
             key={i}
             favourite={true}
+            added={true}
             onClickFavourite={onAddToFavourite}
             {...item}
           />

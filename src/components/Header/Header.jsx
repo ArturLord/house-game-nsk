@@ -9,7 +9,7 @@ const Header = ({ onClickBasket }) => {
   const { basketCards } = React.useContext(AppContext);
   const totalPrice = basketCards.reduce((sum, obj) => obj.price + sum, 0);
   return (
-    <header>
+    <div className="header">
       <Link to="/">
         <div className="headerLeft">
           <img src="/img/logo.png" alt="logo" />
@@ -35,7 +35,7 @@ const Header = ({ onClickBasket }) => {
           </Link>
         </li>
       </ul>
-    </header>
+    </div>
   );
 };
 
