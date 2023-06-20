@@ -17,7 +17,7 @@ const Card = ({
   added,
   loading = false,
 }) => {
-  const { isCardsAdded, isFavouriteAdded } = React.useContext(AppContext);
+  const { isCardsAdded } = React.useContext(AppContext);
   const [isFavourite, setIsFavourite] = React.useState(added);
   const cardsObj = { name, price, imageUrl, count, parentId: id, id };
 
