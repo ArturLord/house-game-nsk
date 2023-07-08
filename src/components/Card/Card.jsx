@@ -4,6 +4,7 @@ import MyLoader from "../loader/Loader";
 import AppContext from "../context";
 
 import "./Card.scss";
+import { useLocation } from "react-router-dom";
 
 const Card = ({
   name,
@@ -12,14 +13,13 @@ const Card = ({
   imageUrl,
   id,
   onClickPlus,
+  onRemoveFav,
   onClickFavourite,
-  favourite = false,
-  added,
   loading = false,
 }) => {
-  const { isCardsAdded } = React.useContext(AppContext);
-  const [isFavourite, setIsFavourite] = React.useState(added);
+  const { isCardsAdded, isFavouriteAdded } = React.useContext(AppContext);
   const cardsObj = { name, price, imageUrl, count, parentId: id, id };
+  const location = useLocation()
 
   const handlePlus = () => {
     onClickPlus(cardsObj);
@@ -27,7 +27,6 @@ const Card = ({
 
   const onFavourite = () => {
     onClickFavourite(cardsObj);
-    setIsFavourite(!isFavourite);
   };
 
 
@@ -38,12 +37,19 @@ const Card = ({
       ) : (
         <>
           {onClickFavourite ? (
-            <div className="card-favourite" onClick={onFavourite}>
+    <div>
+              {location.pathname !== '/favourites' ? <div className="card-favourite" onClick={onFavourite}>
               <img
-                src={added ? "/img/liked.svg" : "/img/noliked.svg"}
+                src={ isFavouriteAdded(id) ? "/img/liked.svg" : "/img/noliked.svg"}
                 alt="noliked"
               />
-            </div>
+            </div> : <div className="card-favourite" onClick={() => onRemoveFav(id)}>
+              <img
+                src='/img/btn-remove.svg'
+                alt="noliked"
+              />
+            </div>}
+    </div>
           ) : null}
           <img className="card-gameconsole" src={imageUrl} alt="sony" />
           <h5>{name}</h5>

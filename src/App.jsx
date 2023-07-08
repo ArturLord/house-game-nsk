@@ -78,18 +78,41 @@ function App() {
 
   const onAddToFavourite = async (obj) => {
     try {
-      if (favourites.find((item) => +item.id === +obj.id)) {
-        axios.delete(`https://6397f57f86d04c7633a1987c.mockapi.io/favourites/${obj.id}`);
-        setFavourites((prev) => prev.filter((item) => +item.id !== +obj.id));
+      const findFavourite = favourites.find((item) => +item.parentId === +obj.id);
+      if (findFavourite) {
+        axios.delete(`https://6397f57f86d04c7633a1987c.mockapi.io/favourites/${findFavourite.id}`);
+        setFavourites((prev) => prev.filter((item) => +item.parentId !== +obj.id));
       } else {
+        setFavourites((prev) => [...prev, obj]);
         const { data } = await axios.post(
           'https://6397f57f86d04c7633a1987c.mockapi.io/favourites',
           obj,
         );
-        setFavourites((prev) => [...prev, data]);
+        setFavourites((prev) =>
+          prev.map((item) => {
+            if (item.parentId === data.parentId) {
+              return {
+                ...item,
+                id: data.id,
+              };
+            }
+            return item;
+          }),
+        );
       }
     } catch (error) {
       alert('Не удалось добавить в любимые');
+    }
+  };
+
+  const onRemoveFav = (id) => {
+    try {
+      if (window.confirm('Вы действительно хотите удалить товар из закладок?')) {
+        axios.delete(`https://6397f57f86d04c7633a1987c.mockapi.io/favourites/${id}`);
+        setFavourites((prev) => prev.filter((item) => item.id !== id));
+      }
+    } catch (error) {
+      alert('Произошла ошибка при удалении');
     }
   };
 
@@ -111,6 +134,7 @@ function App() {
         cards,
         basketCards,
         isCardsAdded,
+        isFavouriteAdded,
         onAddToBasket,
         onAddToFavourite,
         favourites,
@@ -149,7 +173,7 @@ function App() {
           <Route
             exact
             path="/favourites"
-            element={<Favourites onAddToFavourite={onAddToFavourite} />}
+            element={<Favourites onRemoveFav={onRemoveFav} onAddToFavourite={onAddToFavourite} />}
           />
           <Route exact path="/orders" element={<Orders />} />
         </Routes>

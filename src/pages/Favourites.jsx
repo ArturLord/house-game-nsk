@@ -3,7 +3,7 @@ import React from "react";
 import Card from "../components/Card/Card";
 import AppContext from "../components/context";
 
-function Favourites({ onAddToFavourite }) {
+function Favourites({ onAddToFavourite, onRemoveFav }) {
   const { favourites } = React.useContext(AppContext);
   return (
     <div className="content">
@@ -14,10 +14,9 @@ function Favourites({ onAddToFavourite }) {
         {favourites.map((item, i) => (
           <Card
             key={i}
-            favourite={true}
-            added={true}
+            onRemoveFav={onRemoveFav}
             onClickFavourite={onAddToFavourite}
-            {...item}
+            {...item}   
           />
         ))}
       </div>

@@ -10,7 +10,6 @@ function Home({
   onChangeSearchInput,
   onSearchValue,
   isLoading,
-  isFavouriteAdded,
 }) {
   const renderCards = () => {
     const filterCards = cards.filter((item) =>
@@ -24,7 +23,6 @@ function Home({
         onClickFavourite={(obj) => onAddToFavourite(obj)}
         loading={isLoading}
         {...item}
-        added={isFavouriteAdded(item && item.id)}
       />
     ));
   };
